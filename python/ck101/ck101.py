@@ -8,8 +8,16 @@ import urllib.request
 import time
 import base64
 import datetime
+###
+
+import CustomEncryption
+
 # 引入 Beautiful Soup 模組
 from bs4 import BeautifulSoup
+
+
+###
+CustomEncryption = CustomEncryption.CustomEncryption()
 
 
 def inint():
@@ -118,12 +126,13 @@ def singe_page(url):
     # <meta property="dable:item_id" content="4952696">
     # temple_['serchcode'] = soup.find("meta", property="dable:item_id")['content']
     # 使用網址 進行 b16encode
-    temple_['serchcode'] = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    # print(temple_)
+    # return True
+    temple_['serchcode'] = CustomEncryption.b16_encode(url)
 
-    # temple_['keywords'] = soup.find(attrs={"name": "keywords"})['content']
-    # # temple_['description'] = soup.find("meta", name="description")['content']
-    # temple_['description'] = soup.find(
-    #     attrs={"name": "description"})['content']
+    temple_['keywords'] = soup.find(attrs={"name": "keywords"})['content']
+    temple_['description'] = soup.find(
+        attrs={"name": "description"})['content']
     print(temple_)
 
     # IMG path
@@ -208,7 +217,7 @@ def list_page(url):
 # url = 'https://ck101.com/thread-4952696-1-1.html'
 # url = 'https://ck101.com/forum.php?mod=viewthread&tid=4826925&extra=page%3D1'
 # singe_page(url)
-
-
-___url = 'https://ck101.com/forum-3581-1.html'
+___url = 'https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1'
 list_page(___url)
+
+# https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1  -  1000
