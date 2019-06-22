@@ -8,6 +8,7 @@ import urllib.request
 import time
 import base64
 import datetime
+import sys
 ###
 
 import CustomEncryption
@@ -217,7 +218,18 @@ def list_page(url):
 # url = 'https://ck101.com/thread-4952696-1-1.html'
 # url = 'https://ck101.com/forum.php?mod=viewthread&tid=4826925&extra=page%3D1'
 # singe_page(url)
-___url = 'https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1'
-list_page(___url)
+# ___url = 'https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1'
+# list_page(___url)
 
 # https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1  -  1000
+
+_a_host = 'https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page{}'
+a = sys.argv
+b = len(sys.argv)
+# print(a)
+# print(b)
+if b != 1:
+    # 網址
+    # print(a)
+    list_page(_a_host.format(a[1]))
+    # list_page(a[1])
