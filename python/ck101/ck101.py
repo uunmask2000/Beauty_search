@@ -134,7 +134,7 @@ def singe_page(url):
     temple_['keywords'] = soup.find(attrs={"name": "keywords"})['content']
     temple_['description'] = soup.find(
         attrs={"name": "description"})['content']
-    print(temple_)
+    # print(temple_)
 
     # IMG path
     temple_['img'] = get_to_image(temple_['serchcode'],  temple_[
@@ -191,7 +191,7 @@ def get_to_image(_prex,  img,  count):
 
         time.sleep(0.1)
 
-    print(true_local_path)
+    # print(true_local_path)
     return true_local_path
 
 
@@ -223,13 +223,21 @@ def list_page(url):
 
 # https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page=1  -  1000
 
-_a_host = 'https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page{}'
+# _a_host = "https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page={0}"
 a = sys.argv
 b = len(sys.argv)
 # print(a)
 # print(b)
 if b != 1:
+    _urk = "https://ck101.com/forum.php?mod=forumdisplay&fid=3581&page={0}"
     # 網址
-    # print(a)
-    list_page(_a_host.format(a[1]))
+    # print(a[1])
+    rrr = _urk.format(a[1])
+
+    print(rrr)
+    list_page(rrr)
+    # while True:
+    #     time.sleep(10)
+    #     print('XXX')
+    # list_page(_a_host.format(a[1]))
     # list_page(a[1])
