@@ -56,7 +56,7 @@ app.post('/api/img_save', function (req, res) {
     var ret_json = {
         "code": 999,
         "msg": 'error',
-        "data": []
+        "data": {}
     }
 
     /// 首先判斷 serchcode 是否存在過
@@ -116,7 +116,7 @@ app.post('/api/get_img', function (req, res) {
     var ret_json = {
         "code": 999,
         "msg": 'error',
-        "data": []
+        "data": {}
     }
 
     connection.query('SELECT idimg_id , title ,description  FROM img_mian  ', function (error, rows, fields) {
@@ -132,7 +132,7 @@ app.post('/api/get_img', function (req, res) {
         } else {
             ret_json['code'] = 0
             ret_json['msg'] = '成功'
-            ret_json['data'] = rows
+            ret_json['data']['img_lists'] = rows
         }
         res.end(res.json(ret_json)); //作出回應
     });
@@ -146,7 +146,7 @@ app.post('/api/get_img_list_path', function (req, res) {
     var ret_json = {
         "code": 999,
         "msg": 'error',
-        "data": []
+        "data": {}
     }
 
     connection.query('SELECT img_path_url  FROM img_path  where  img_path_fk = ? ', req.body.id, function (error, rows, fields) {
@@ -161,9 +161,10 @@ app.post('/api/get_img_list_path', function (req, res) {
             // res.json(ret_json); //作出回應
         } else {
             ret_json['code'] = 0
-            ret_json['msg'] = '成功'
-            ret_json['data'] = rows
-        }
+            ret_json['msg'] = '成功' 
+            ret_json['data']['img_paths'] = rows
+           
+        } 
 
         res.end(res.json(ret_json)); //作出回應
     });
